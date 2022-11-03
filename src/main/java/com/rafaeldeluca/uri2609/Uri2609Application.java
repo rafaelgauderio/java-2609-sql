@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.rafaeldeluca.uri2609.dto.CategorySumDTO;
+import com.rafaeldeluca.uri2609.dto.CategoryCountDTO;
 import com.rafaeldeluca.uri2609.projections.CategorySumProjection;
 import com.rafaeldeluca.uri2609.repositories.CategoryRepository;
 
@@ -42,6 +43,11 @@ public class Uri2609Application implements CommandLineRunner {
 			System.out.println(object);
 		}
 		
+		System.out.println("\n");
+		List<CategoryCountDTO> result3 = repository.searchJPQL02();
+		for(CategoryCountDTO nickname: result3) {
+			System.out.println(nickname);
+		}
 		
 
 	}

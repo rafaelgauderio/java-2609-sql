@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.rafaeldeluca.uri2609.dto.CategorySumDTO;
+import com.rafaeldeluca.uri2609.dto.CategoryCountDTO;
 import com.rafaeldeluca.uri2609.entities.Category;
 import com.rafaeldeluca.uri2609.projections.CategorySumProjection;
 
@@ -22,5 +23,10 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 			+ "FROM Product objeto "		// usar o nome da entidade ao invés da tabela do banco	
 			+ "GROUP BY objeto.category.name")
 	List<CategorySumDTO> searchJPQL01();
+	
+	@Query("SELECT new com.rafaeldeluca.uri2609.dto.CategoryCountDTO(objeto.category.name, COUNT(objeto.id)) "
+			+ "FROM Product objeto "			
+			+ "GROUP BY objeto.category.name")
+	List<CategoryCountDTO> searchJPQL02();
 	
 }
